@@ -8,6 +8,7 @@ https://www.docker.com/get-started
 
 ```sh
 docker --host ssh://ubuntu@54.38.137.98 stack deploy --compose-file docker-compose.yml --prune minecraft
+docker --host ssh://ubuntu@54.38.137.98 service logs minecraft_minecraft -f
 ```
 
 # configure minecraft
@@ -15,6 +16,7 @@ docker --host ssh://ubuntu@54.38.137.98 stack deploy --compose-file docker-compo
 ```sh
 docker --host ssh://ubuntu@51.83.254.60 cp 23319bd8188f:/data/server.properties data/
 docker --host ssh://ubuntu@51.83.254.60 cp 23319bd8188f:/data/plugins data/
+scp -r plugins ubuntu@51.83.254.60:plugins
 ```
 
 

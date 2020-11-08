@@ -1,7 +1,7 @@
 version: "3.8"
 
 # volumes:
-#   minecraft:
+#   plugins:
 
 services:
   minecraft:
@@ -13,11 +13,13 @@ services:
       - VERSION=1.16.4
       - TYPE=PAPER
       - FORCE_REDOWNLOAD=true
-    # volumes:
-    #   - minecraft:/data
+    volumes:
+      - /home/ubuntu/plugins:/plugins
     configs:
       - source: server-properties
         target: /data/server.properties
+      - source: plugins-vault-config
+        target: /data/plugins/Vault/config.yml
     deploy:
       placement:
         constraints: [node.labels.elastic == true]
@@ -25,3 +27,5 @@ services:
 configs:
   server-properties:
     file: $PWD/data/server.properties
+  plugins-vault-config:
+    file: $PWD/data/plugins/Vault/config.yml
